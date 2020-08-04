@@ -1,21 +1,28 @@
+---
 - name: Check if bootstrap is needed
   raw: stat $HOME/.bootstrapped
   register: need_bootstrap
   ignore_errors: True
+  changed_when: False
 
 - name: Run bootstrap.sh
   script: bootstrap.sh
+  environment:
+    PYTHON_VERSION: "{{ python_version }}"
+    PYPY_VERSION: "{{ pypy_version }}"
   when: need_bootstrap
 
 - name: Check if we need to install pip
   shell: "{{ansible_python_interpreter}} -m pip --version"
   register: need_pip
   ignore_errors: True
-  changed_when: false
+  changed_when: False
   when: need_bootstrap
 
 - name: Copy get-pip.py
-  copy: src=get-pip.py dest=~/get-pip.py
+  copy:
+    src: get-pip.py
+    dest: ~/get-pip.py
   when: need_pip
 
 - name: Install pip
@@ -23,9 +30,14 @@
   when: need_pip
 
 - name: Remove get-pip.py
-  file: path=~/get-pip.py state=absent
+  file:
+    path: ~/get-pip.py
+    state: absent
   when: need_pip
 
 - name: Install pip launcher
-  copy: src=runner dest=~/bin/pip mode=0755
+  copy:
+    src: runner
+    dest: ~/bin/pip
+    mode: 0755
   when: need_pip
