@@ -1,6 +1,6 @@
 ---
 - name: Check if bootstrap is needed
-  raw: stat $HOME/.bootstrapped
+  raw: "stat $HOME/.bootstrapped_{{ python_version }}_{{ pypy_version }}"
   register: need_bootstrap
   ignore_errors: True
   changed_when: False

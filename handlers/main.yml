@@ -1,6 +1,6 @@
 ---
 - name: Touch .bootstrapped
   file:
-    path: ~/.bootstrapped
+    path: "~/.bootstrapped_{{ python_version }}_{{ pypy_version }}"
     state: touch
   listen: bootstrap changed
