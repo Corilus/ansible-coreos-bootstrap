@@ -1,0 +1,6 @@
+---
+- name: Touch .bootstrapped
+  file:
+    path: ~/.bootstrapped
+    state: touch
+  listen: bootstrap changed
