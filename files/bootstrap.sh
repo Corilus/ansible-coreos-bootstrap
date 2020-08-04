@@ -1,6 +1,6 @@
 #/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 cd
 
@@ -29,7 +29,7 @@ cat > $HOME/bin/python <<EOF
 LD_LIBRARY_PATH=$HOME/pypy/lib:$LD_LIBRARY_PATH exec $HOME/pypy/bin/pypy "\$@"
 EOF
 
-chmod +x $HOME/bin/python
-$HOME/bin/python --version
+chmod +x ${HOME}/bin/python
+${HOME}/bin/python --version
 
-touch $HOME/.bootstrapped
+touch ${HOME}/.bootstrapped
