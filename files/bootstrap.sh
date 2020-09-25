@@ -4,10 +4,6 @@ set -eo pipefail
 
 cd
 
-if [[ -e ${HOME}/.bootstrapped ]]; then
-  exit 0
-fi
-
 if [[ -e ${HOME}/pypy${PYTHON_VERSION}-v${PYPY_VERSION}-linux64.tar.bz2 ]]; then
   tar -xjf ${HOME}/pypy${PYTHON_VERSION}-v${PYPY_VERSION}-linux64.tar.bz2
   rm -rf ${HOME}/pypy${PYTHON_VERSION}-v${PYPY_VERSION}-linux64.tar.bz2
@@ -15,6 +11,7 @@ else
   wget -O - https://downloads.python.org/pypy/pypy${PYTHON_VERSION}-v${PYPY_VERSION}-linux64.tar.bz2 | tar -xjf -
 fi
 
+rm -rf ${HOME}/pypy
 mv -n pypy${PYTHON_VERSION}-v${PYPY_VERSION}-linux64 pypy
 
 ## library fixup
