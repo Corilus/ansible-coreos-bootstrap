@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Corilus/ansible-coreos-bootstrap.svg?branch=master)](https://travis-ci.org/Corilus/ansible-coreos-bootstrap)
+[![Build Status](https://travis-ci.com/Corilus/ansible-coreos-bootstrap.svg?branch=master)](https://travis-ci.com/Corilus/ansible-coreos-bootstrap)
 
 # coreos_bootstrap
 
