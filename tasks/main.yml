@@ -15,7 +15,7 @@
   notify: bootstrap changed
 
 - name: Check if we need to install pip
-  shell: "{{ ansible_python_interpreter }} -m pip --version"
+  command: "{{ ansible_python_interpreter }} -m pip --version"
   register: need_pip
   ignore_errors: True
   changed_when: False
@@ -23,7 +23,7 @@
   check_mode: no
 
 - name: Install pip
-  shell: "curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | {{ ansible_python_interpreter }}"
+  shell: "set -o pipefail && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | {{ ansible_python_interpreter }}"
   args:
     warn: false
   when: need_pip is failed
