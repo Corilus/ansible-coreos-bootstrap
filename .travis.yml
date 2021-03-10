@@ -1,9 +1,6 @@
 ---
 language: python
-python: "2.7"
-
-env:
-  - SITE=test.yml
+python: "3.6"
 
 before_install:
   - sudo apt-get update -qq
@@ -12,8 +9,11 @@ before_install:
 install:
   - pip install ansible
 
+  # Create symlink with actual role name
+  - ln -s ansible-coreos-bootstrap ../coreos_bootstrap
+
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
 script:
-  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+  - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
