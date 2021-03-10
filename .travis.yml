@@ -8,11 +8,10 @@ addons:
       - curl
 
 install:
-  # Create symlink with actual role name
-  - ln -s ansible-coreos-bootstrap ../coreos_bootstrap
+  - pip install ansible
 
   # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+  - "{ echo '[defaults]'; echo 'roles_path = ./'; } >> ansible.cfg"
 
 script:
   # Check the roles syntax
